@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	<script src="js/crosspath.js"></script>
+	<script src="js/keyevent.js"></script>
+	<style>
+	body {
+		margin:0;
+		background-color: black;
+		width:100%;
+		height:100%;
+		font-size:1em;
+	}
+	</style>
+</head>
+<body>
+	<div style="position:absolute;width:100%;height:100%;top:0;left:0;z-index:2">
+		<div style="position:absolute;top:17%;font-size:2em;font-family:'Courier New', courier;font-weight:lighter;color:white;text-align:center;width:100%" id="announcement">
+			<p>CrossPath, by Prajogo Tio 2015.</p>
+			<p>LEFT ARROW : move left</p>
+			<p>RIGHT ARROW : move right</p>
+			<p>UP ARROW : jump </p>
+			<p>DOWN ARROW : slide down</p>
+			<p>SPACE : shoot </p>
+		</div>
+		<div style="position:absolute;left:0;right:0;bottom:70px;margin:auto;color:black;background-color:white;text-align:center;font-size:3em;cursor:pointer;" id="startbutton">
+			START
+		</div>
+	</div>
+	<div style="position:relative;width:100%;height:100%;overflow:hidden;">
+		<canvas id="display" width="1024" height="640" style="position:absolute; left:0; right:0; margin:auto;width:100%">
+		</canvas>
+	</div>
+	<script>
+		var start = document.getElementById("startbutton");
+		start.onclick = function() {
+			this.style.setProperty("display", "none");
+			startGame();
+		}
+	</script>
+</body>
+</html>
