@@ -1010,6 +1010,9 @@ World.prototype.collisionHandler = function(sprite) {
 				if (!e.alive) {
 					b.owner.killingReward();
 					this.killCount++;
+					if (e instanceof Terminator) {
+						this.updateStory(20);
+					}
 				}
 				break;
 			}
@@ -1161,25 +1164,65 @@ World.prototype.storyLine = function() {
 		}
 	}
 	if (this.story == 16) {
-		this.showStory("I need no mercy.");
+		this.showStory("I need no mercy..");
+		if (this.storyShown && announcement.delta <= 0) {
+			this.story++;
+			this.storyShown = false;
+		}
+	}
+	if (this.story == 17) {
+		this.showStory("not even from the god.");
+		if (this.storyShown && announcement.delta <= 0) {
+			this.story++;
+			this.storyShown = false;
+		}
+	}
+	if (this.story == 18) {
+		this.showStory("???: Challenge me and perish, young mortal.");
 		if (this.storyShown && announcement.delta <= 0) {
 			this.story++;
 			this.storyShown = false;
 		}
 	}
 
-	if (this.enemies.length == 0 && this.deathRow.length == 0) {
-		this.story = Math.max(this.story, 18);
+	if (this.story == 20) {
+		this.showStory("???: How..");
+		if (this.storyShown && announcement.delta <= 0) {
+			this.story++;
+			this.storyShown = false;
+		}
 	}
-	if (this.story == 18) {
+	if (this.story == 21) {
+		if(!this.storyShown) {
+			for (var i = 0; i < this.enemies.length; ++i) {
+				this.enemies[i].alive = false;
+				this.enemies[i].evolution = null;
+			}
+			this.deathRow = [];
+		}
+		this.showStory("???: does my own creation...");
+		if (this.storyShown && announcement.delta <= 0) {
+			this.story++;
+			this.storyShown = false;
+		}
+	}
+
+	if (this.story == 22) {
 		this.showStory("I have slaughtered all that remain..");
 		if (this.storyShown && announcement.delta <= 0) {
 			this.story++;
 			this.storyShown = false;
 		}
 	}
-	if (this.story == 19) {
-		this.showStory("..And finally. It's my turn.");
+	if (this.story == 23) {
+		this.showStory("..of my kind.");
+		if (this.storyShown && announcement.delta <= 0) {
+			this.story++;
+			this.storyShown = false;
+			this.completed = true;
+		}
+	}
+	if (this.story == 24) {
 		if (this.storyShown && announcement.delta <= 0) {
 			this.story++;
 			this.storyShown = false;
